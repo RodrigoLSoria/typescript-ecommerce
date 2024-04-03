@@ -1,4 +1,3 @@
-import React from 'react'
 import { CartButton, LinksDropDown, Logo, ModeToggle, Navlinks } from '.'
 
 export default function NavBar() {

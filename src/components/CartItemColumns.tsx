@@ -4,11 +4,10 @@ import { Button } from "./ui/button"
 import { editItem, removeItem } from "@/features/cart/cartSlice"
 import { SelectProductAmount } from "."
 import { Mode } from "./SelectProductAmount"
-import { link } from "fs"
 
 
 export const FirstColumn = ({ title, image }: { image: string, title: string }) => {
-    return <img src={image} alt="{title}" className="h-24 w-24 rounded-lg sm:h-32 sm:w-32
+    return <img src={image} alt={title} className="h-24 w-24 rounded-lg sm:h-32 sm:w-32
     object-cover" />
 }
 export const SecondColumn = ({ title, company, productColor }:

@@ -1,6 +1,6 @@
 import { useLoaderData } from 'react-router-dom';
 
-import { Order, type OrdersResponse } from '@/utils';
+import { type OrdersResponse } from '@/utils';
 
 import {
     Table,

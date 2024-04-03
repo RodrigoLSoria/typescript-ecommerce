@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { type CartItem, type CartState } from '@/utils';
 import { toast } from '@/components/ui/use-toast';
-import { json } from 'stream/consumers';
 
 const defaultState: CartState = {
     cartItems: [],
