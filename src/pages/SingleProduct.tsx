@@ -12,7 +12,10 @@ import { CartButton, SelectProductAmount } from '@/components';
 import { SelectProductColor } from '@/components';
 import { type LoaderFunction } from 'react-router-dom';
 import { Mode } from '@/components/SelectProductAmount';
-
+import { useAppDispatch } from '@/hooks';
+import { addItem } from '@/features/cart/cartSlice';
+import type { CartItem } from '@/utils';
+import { useDispatch } from 'react-redux';
 
 export const loader: LoaderFunction = async ({ params }): Promise<SingleProductResponse> => {
   const response = await customFetch<SingleProductResponse>(`/products/${params.id}`)
@@ -25,9 +28,21 @@ export default function SingleProduct() {
   const dollarAmount = formatAsDollars(price)
   const [productColor, setProductColor] = useState(colors[0])
   const [amount, setAmount] = useState(1)
+  const dispatch = useAppDispatch()
+
+  const cartProduct: CartItem = {
+    cartID: product.id + productColor,
+    productID: product.id,
+    image,
+    title,
+    price,
+    amount,
+    productColor,
+    company
+  }
 
   const addToCart = () => {
-
+    dispatch(addItem(cartProduct))
   }
   return (
     <section>
