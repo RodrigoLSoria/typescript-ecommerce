@@ -5,7 +5,9 @@ import { Button } from "@/components/ui/button"
 
 export default function Cart() {
 
-  const user = null
+  const user = useAppSelector((state) => {
+    return state.userState.user
+  })
   const numItemsInCart = useAppSelector((state) => state.cartState.numItemsInCart)
   if (numItemsInCart === 0) {
     return <SectionTitle text="Empty cart" />
@@ -19,11 +21,13 @@ export default function Cart() {
         </div>
         <div className="lg:col-span-4 lg:pl-4">
           <CartTotals />
-          {user ? <Button asChild className="mt-8 w-full">
-            <Link to={'/checkout'}>Proceed to checkout</Link>
-          </Button> : <Button asChild className="mt-8 w-full">
-            <Link to={'/login'}>Please Login</Link>
-          </Button>}
+          <Button asChild className="mt-8 w-full">
+            {user ?
+              <Link to={'/checkout'}>Proceed to checkout</Link>
+              :
+              <Link to={'/login'}>Please Login</Link>
+            }
+          </Button>
         </div>
       </div>
     </div>

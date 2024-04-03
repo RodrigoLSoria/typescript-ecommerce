@@ -39,6 +39,7 @@ function PaginationContainer() {
                 <PaginationItem>
                     <PaginationPrevious to={prevUrl} />
                 </PaginationItem>
+                {renderPagination}
                 <PaginationItem>
                     <PaginationNext to={nextUrl} />
                 </PaginationItem>

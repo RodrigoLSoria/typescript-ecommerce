@@ -17,15 +17,21 @@ import { AxiosResponse } from 'axios';
 
 
 
-export const action: ActionFunction = async ({ request }): Promise<Response | null> => {
+export const action = (store: ReduxStore): ActionFunction => async ({ request }): Promise<Response | null> => {
   const formData = await request.formData()
   const data = Object.fromEntries(formData)
+
   try {
-
+    const response: AxiosResponse = await customFetch.post('/auth/local', data)
+    const username = response.data.user.username
+    const jwt = response.data.jwt
+    store.dispatch(loginUser({ username, jwt }))
+    return redirect('/')
   } catch (error) {
-
+    toast({ description: 'Login failed' })
+    return null
   }
-  return null
+
 
 }
 
